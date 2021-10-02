@@ -1,5 +1,8 @@
 <template>
-  <div class="wrapper fadeInDown">
+  <div>
+    <Header/>
+    <div class="wrapper fadeInDown">
+
     <div id="formContent">
       <!-- Tabs Titles -->
 
@@ -23,16 +26,18 @@
 
     </div>
   </div>
+  </div>
 
 </template>
 
 <script>
 // @ is an alias to /src
 import axios from 'axios'
+import Header from '@/components/Header.vue'
 export default {
   name: 'Home',
   components: {
-
+    Header
   },
   data: function () {
     return {
@@ -52,12 +57,13 @@ export default {
       axios.post('http://localhost:3000/api/auth/login', object)
         .then(response => {
           if (response.data.status === 'Ok') {
-            console.log('todo correcto')
+            localStorage.token = response.data.body.token
+            this.$router.push('dashboard')
           }
         })
         .catch(err => {
-          console.log(err)
           this.error = true
+          this.error_msg = err
         })
     }
   }
@@ -104,6 +110,7 @@ export default {
   }
 
   #formContent {
+    margin-top: 50px;
     -webkit-border-radius: 10px 10px 10px 10px;
     border-radius: 10px 10px 10px 10px;
     background: #fff;

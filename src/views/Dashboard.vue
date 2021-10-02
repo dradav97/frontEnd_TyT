@@ -1,13 +1,18 @@
 <template>
     <div>
-        hola usuario
+      <Header/>
+      hola usuario
     </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
 
 export default {
-  name: 'Dashboard'
+  name: 'Dashboard',
+  components: {
+    Header
+  }
 }
 </script>
 
