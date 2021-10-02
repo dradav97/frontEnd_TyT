@@ -14,6 +14,7 @@
         <input type="password" id="password" class="fadeIn third" name="login" placeholder="Contraseña" v-model="password">
         <input type="submit" class="fadeIn fourth" value="Log In">
       </form>
+      <b-alert show variant="danger" v-if="error">Usuario o contraseña incorrectos</b-alert>
 
       <!-- Remind Passowrd -->
       <div id="formFooter">
@@ -51,8 +52,12 @@ export default {
       axios.post('http://localhost:3000/api/auth/login', object)
         .then(response => {
           if (response.data.status === 'Ok') {
-            console.log(response.data)
+            console.log('todo correcto')
           }
+        })
+        .catch(err => {
+          console.log(err)
+          this.error = true
         })
     }
   }
