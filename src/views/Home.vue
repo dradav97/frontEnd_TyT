@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Header/>
+
     <div class="wrapper fadeInDown">
 
     <div id="formContent">
@@ -33,11 +33,11 @@
 <script>
 // @ is an alias to /src
 import axios from 'axios'
-import Header from '@/components/Header.vue'
+
 export default {
   name: 'Home',
   components: {
-    Header
+
   },
   data: function () {
     return {
