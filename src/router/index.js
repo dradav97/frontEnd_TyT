@@ -24,7 +24,7 @@ const routes = [
     component: AdminPlan
   },
   {
-    path: '/editPlanAdmin/:id',
+    path: '/editPlanAdmin/:PlanId',
     name: 'EditPlanAdmin',
     component: EditPlanAdmin
   }
