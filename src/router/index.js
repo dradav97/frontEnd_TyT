@@ -2,8 +2,10 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Dashboard from '../views/Dashboard.vue'
-import AdminPlan from '../views/Admin/AdminPlan.vue'
-import EditPlanAdmin from '../views/Admin/EditPlanAdmin.vue'
+import AdminPlan from '../views/Admin/plan/AdminPlan.vue'
+import EditPlanAdmin from '../views/Admin/plan/EditPlanAdmin.vue'
+import NewPlanAdmin from '../views/Admin/plan/NewPlanAdmin.vue'
+import AdminCustomer from '../views/Admin/customer/AdminCustomer.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +29,16 @@ const routes = [
     path: '/editPlanAdmin/:PlanId',
     name: 'EditPlanAdmin',
     component: EditPlanAdmin
+  },
+  {
+    path: '/newPlanAdmin/',
+    name: 'NewPlanAdmin',
+    component: NewPlanAdmin
+  },
+  {
+    path: '/adminCustomer/',
+    name: 'AdminCustomer',
+    component: AdminCustomer
   }
 ]
 

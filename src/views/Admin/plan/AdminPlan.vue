@@ -1,8 +1,9 @@
 <template>
     <div>
       <Header/>
-      <h1>Gestion de planes</h1>
-      <div class="container">
+      <h1>Gestion de planes</h1><br>
+      <div class="container left">
+        <button class="btn btn-primary" v-on:click="newPlan()">Nuevo Plan</button><br><br>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -39,7 +40,7 @@ import Header from '@/components/Header.vue'
 import axios from 'axios'
 
 export default {
-  name: 'Dashboard',
+  name: 'AdminPlan',
   data () {
     return {
       ListaPlanes: null,
@@ -53,10 +54,13 @@ export default {
   methods: {
     edit (id) {
       this.$router.push('/editPlanAdmin/' + id)
+    },
+    newPlan () {
+      this.$router.push('/newPlanAdmin/')
     }
   },
   mounted: function () {
-    const direction = 'http://localhost:3000/api/plan' + this.pagina
+    const direction = 'http://localhost:3000/api/plan'
     axios.get(direction).then(data => {
       this.ListaPlanes = data.data.body
     })
@@ -65,5 +69,7 @@ export default {
 </script>
 
 <style scoped>
-
+  .left {
+    text-align:left
+  }
 </style>

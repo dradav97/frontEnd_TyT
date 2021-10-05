@@ -8,27 +8,21 @@
                 <b-nav-item>
                     <b-button variant="outline-primary" :to="{name: 'Dashboard'}">Inicio</b-button>
                 </b-nav-item>
+                <b-nav-item-dropdown text="Clientes" right>
+                    <b-dropdown-item :to="{name: 'AdminCustomer'}" href="#">Listar Clientes</b-dropdown-item>
+                </b-nav-item-dropdown>
                 <b-nav-item-dropdown  text="Planes" right>
                     <b-dropdown-item :to="{name: 'AdminPlan'}" href="#">Listar planes</b-dropdown-item>
-                    <b-dropdown-item href="#">ES</b-dropdown-item>
-                    <b-dropdown-item href="#">RU</b-dropdown-item>
-                    <b-dropdown-item href="#">FA</b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item-dropdown text="Lang" right>
-                    <b-dropdown-item href="#">EN</b-dropdown-item>
-                    <b-dropdown-item href="#">ES</b-dropdown-item>
-                    <b-dropdown-item href="#">RU</b-dropdown-item>
-                    <b-dropdown-item href="#">FA</b-dropdown-item>
+                <b-nav-item-dropdown text="Contratos" right>
+                    <b-dropdown-item :to="{name: 'AdminPlan'}" href="#">Listar Contratos</b-dropdown-item>
                 </b-nav-item-dropdown>
-                <b-nav-item-dropdown text="Lang" right>
-                    <b-dropdown-item href="#">EN</b-dropdown-item>
-                    <b-dropdown-item href="#">ES</b-dropdown-item>
-                    <b-dropdown-item href="#">RU</b-dropdown-item>
-                    <b-dropdown-item href="#">FA</b-dropdown-item>
+                <b-nav-item-dropdown text="Facturas" right>
+                    <b-dropdown-item :to="{name: 'AdminPlan'}" href="#">Listar Facturas</b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-container>
                     <b-nav-item-dropdown text="| Usuario Admin" activate right>
-                        <b-dropdown-item-button>Cerrar Secion</b-dropdown-item-button>
+                        <b-dropdown-item :to="{ name: 'Home' }" >Cerrar Secion</b-dropdown-item>
                     </b-nav-item-dropdown>
                 </b-container>
             </b-navbar-nav>
