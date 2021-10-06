@@ -5,6 +5,8 @@ import store from './store'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import 'selectize/dist/css/selectize.default.css' // This is required, we use the same css as selectize.js
+import VSelectize from '@isneezy/vue-selectize'
 
 // Import Bootstrap an BootstrapVue CSS files (order is important)
 import 'bootstrap/dist/css/bootstrap.css'
@@ -20,6 +22,7 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(VueSweetalert2)
 Vue.use(VueAxios, axios)
+Vue.component('v-selectize', VSelectize)
 
 new Vue({
   router,

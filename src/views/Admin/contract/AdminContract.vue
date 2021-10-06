@@ -3,7 +3,7 @@
       <Header/>
       <h1>Gestion de Contratos</h1><br>
       <div class="container left">
-        <button class="btn btn-primary" v-on:click="newClient()">Nuevo Contrato</button><br><br>
+        <button class="btn btn-primary" v-on:click="newContract()">Nuevo Contrato</button><br><br>
         <table class="table table-hover">
           <thead>
             <tr>
@@ -18,7 +18,6 @@
           <tbody>
             <tr v-for="contract in ContractList" :key="contract.contract_id" v-on:click= "edit(contract.contract_id)">
               <th scope="row">{{ contract.contract_id }}</th>
-              <td>{{ contract.contract_id }}</td>
               <td>{{ contract.initial_date }}</td>
               <td>{{ contract.address }}</td>
               <td>{{ contract.additional_price}}</td>
@@ -52,10 +51,11 @@ export default {
   },
   methods: {
     edit (id) {
-      // this.$router.push('/editCustomerAdmin/' + id)
+      console.log(id)
+      this.$router.push('/editContractAdmin/' + id)
     },
     newContract () {
-      // this.$router.push('/newCustomerAdmin/')
+      this.$router.push('/newContractAdmin/')
     }
   },
   mounted: function () {

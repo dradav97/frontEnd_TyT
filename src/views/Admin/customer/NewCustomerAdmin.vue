@@ -1,7 +1,7 @@
 <template>
     <div>
       <Header/>
-      <h3>Editar informacion de cliente</h3>
+      <h3>Nuevo Cliente</h3>
       <br>
       <div class="container">
 
@@ -51,7 +51,7 @@ import Header from '@/components/Header.vue'
 import axios from 'axios'
 
 export default {
-  name: 'EditPlanAdmin',
+  name: 'NewCustomerAdmin',
   components: {
     Header
     // Footer
