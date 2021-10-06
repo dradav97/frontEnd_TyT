@@ -11,6 +11,7 @@ import NewCustomerAdmin from '../views/Admin/customer/NewCustomerAdmin.vue'
 import AdminContract from '../views/Admin/contract/AdminContract.vue'
 import EditContractAdmin from '../views/Admin/contract/EditContractAdmin.vue'
 import NewContractAdmin from '../views/Admin/contract/NewContractAdmin.vue'
+import Login from '../views/Login.vue'
 
 Vue.use(VueRouter)
 
@@ -61,7 +62,7 @@ const routes = [
     component: AdminContract
   },
   {
-    path: '/editContractAdmin/:ContractId',
+    path: '/editContractAdmin/',
     name: 'EditContractAdmin',
     component: EditContractAdmin
   },
@@ -69,6 +70,11 @@ const routes = [
     path: '/newContractAdmin/',
     name: 'NewContractAdmin',
     component: NewContractAdmin
+  },
+  {
+    path: '/login/',
+    name: 'Login',
+    component: Login
   }
 ]
 

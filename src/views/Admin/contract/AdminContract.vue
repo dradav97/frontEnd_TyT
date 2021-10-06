@@ -16,7 +16,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="contract in ContractList" :key="contract.contract_id" v-on:click= "edit(contract.contract_id)">
+            <tr v-for="contract in ContractList" :key="contract.contract_id">
               <th scope="row">{{ contract.contract_id }}</th>
               <td>{{ contract.initial_date }}</td>
               <td>{{ contract.address }}</td>
@@ -50,10 +50,6 @@ export default {
     // ooter
   },
   methods: {
-    edit (id) {
-      console.log(id)
-      this.$router.push('/editContractAdmin/' + id)
-    },
     newContract () {
       this.$router.push('/newContractAdmin/')
     }

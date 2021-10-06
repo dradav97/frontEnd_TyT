@@ -16,6 +16,7 @@
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown text="Contratos" right>
                     <b-dropdown-item :to="{name: 'AdminContract'}" href="#">Listar Contratos</b-dropdown-item>
+                    <b-dropdown-item :to="{name: 'EditContractAdmin'}" href="#">Cancelar Contrato</b-dropdown-item>
                 </b-nav-item-dropdown>
                 <b-nav-item-dropdown text="Facturas" right>
                     <b-dropdown-item :to="{name: 'AdminPlan'}" href="#">Listar Facturas</b-dropdown-item>

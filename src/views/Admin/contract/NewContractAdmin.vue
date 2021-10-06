@@ -11,30 +11,25 @@
 
           <div class="form-group left row g-3 ">
             <div class="col-md-4  mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.customer_id">
-              <label for="floatingInput">Cliente</label>
+                <v-selectize :options="optionsClient" v-model="selectedClient" key-by="customer_id" label="username" :keys="['customer_id', 'username']" placeholder="Seleccione un cliente"/>
             </div>
+
             <div class="col-md-4  mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.plan_id">
-              <label for="floatingInput">Plan</label>
+                <v-selectize :options="optionsPlan" v-model="selectedPlan" key-by="plan_id" label="name" :keys="['plan_id', 'name']" placeholder="Seleccione un Plan"/>
             </div>
+
             <div class="col-md-4 mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.initial_date">
+              <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.initial_date">
               <label for="floatingInput">Fecha de inicio</label>
             </div>
 
             <div class="col-md-4 mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.address">
+              <input type="text" class="form-control" id="floatingInput" placeholder="Direccion"  v-model="form.address">
               <label for="floatingInput">Direccion</label>
             </div>
             <div class="col-md-4  mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.additional_price">
+              <input type="number" class="form-control" id="floatingInput" placeholder="Precio"  v-model="form.additional_price">
               <label for="floatingInput">Precio adicional</label>
-            </div>
-            <div>
-              <div>Beast:</div>
-                <v-selectize :options="options" v-model="selected" placeholder="Select a person"/>
-              <div>Current Value: {{ selected }}</div>
             </div>
 
           </div>
@@ -65,27 +60,42 @@ export default {
   data: function () {
     return {
       form: {
-        contract_id: '',
         initial_date: '',
         address: '',
         additional_price: '',
         customer_id: '',
         plan_id: ''
       },
-      options: ['Chuck Testa', 'Nikola Tesla', 'Sage Cattabriga-Alosa'],
-      selected: null
+      optionsClient: [],
+      selectedClient: null,
+      optionsPlan: [],
+      selectedPlan: null
     }
   },
   methods: {
     save () {
-      this.form.location_type = this.selectedLocation
-      this.form.service_type = this.selectedService
+      this.form.customer_id = this.selectedClient.customer_id
+      this.form.plan_id = this.selectedPlan.plan_id
       axios.post('http://localhost:3000/api/contract/', this.form)
       this.$router.push('/adminContract/')
     },
     exit () {
       this.$router.push('/adminContract/')
     }
+  },
+  mounted: function () {
+    axios.get('http://localhost:3000/api/user/')
+      .then(data => {
+        // this.optionsClient = data.data.body.map(info => info.username)
+        this.optionsClient = data.data.body
+        console.log(data.data.body.map(info => info.customer_id))
+      })
+    axios.get('http://localhost:3000/api/plan/')
+      .then(data => {
+        // this.optionsPlan = data.data.body.map(info => info.name)
+        this.optionsPlan = data.data.body
+        console.log(data.data.body.map(info => info.plan_id))
+      })
   }
 }
 </script>
