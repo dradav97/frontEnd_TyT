@@ -7,8 +7,10 @@
 
         <form action="" left>
           <div class="form-group left row g-3 ">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.name">
+            <div class="col-md-4 mb-3">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.username">
               <label for="floatingInput">Nombre de usuario</label>
+            </div>
           </div>
 
           <div class="form-group left row g-3 ">
@@ -17,26 +19,26 @@
               <label for="floatingInput">Nombre</label>
             </div>
             <div class="col-md-4  mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.basic_price">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.document_type">
               <label for="floatingInput">Tipo de documento</label>
             </div>
             <div class="col-md-4  mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.install_price">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.document">
               <label for="floatingInput">Documento</label>
             </div>
           </div>
 
           <div class="form-group left row g-3 ">
             <div class="col-md-4 mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.megabytes">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.phone_number">
               <label for="floatingInput">Telefono</label>
             </div>
             <div class="col-md-4  mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.location_type">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.email">
               <label for="floatingInput">Correo</label>
             </div>
             <div class="col-md-4  mb-3">
-              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.service_type">
+              <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com"  v-model="form.billing_email">
               <label for="floatingInput">Correo de facturacion</label>
             </div>
           </div>
@@ -70,46 +72,50 @@ export default {
         document_type: '',
         document: '',
         phone_number: '',
-        location_type: '',
-        service_type: '',
-        token: ''
+        email: '',
+        billing_email: '',
+        username: ''
       }
     }
   },
   methods: {
     edit () {
-      axios.put('http://localhost:3000/api/plan/', this.form)
+      const send = {
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+      }
+      axios.put('http://localhost:3000/api/user/', this.form, { headers: send })
         .then(data => {
           console.log(data)
-          this.$router.push('/adminPlan/')
+          this.$router.push('/adminCustomer/')
         })
     },
     exit () {
-      this.$router.push('/adminPlan/')
+      this.$router.push('/adminCustomer/')
     },
     remove () {
       const send = {
-        Authorization: 'Bearer ' + this.form.token
+        Authorization: 'Bearer ' + localStorage.getItem('token')
       }
-      axios.delete('http://localhost:3000/api/plan/' + this.form.plan_id, { headers: send })
+      axios.delete('http://localhost:3000/api/user/' + this.form.customer_id, { headers: send })
         .then(() => {
-          this.$router.push('/adminPlan/')
+          this.$router.push('/adminCustomer/')
         })
     }
   },
   mounted: function () {
-    this.form.plan_id = this.$route.params.PlanId
-    axios.get('http://localhost:3000/api/plan/' + this.form.plan_id)
+    this.form.customer_id = this.$route.params.CustomerId
+    axios.get('http://localhost:3000/api/user/' + this.form.customer_id)
       .then(data => {
-        this.form.plan_id = data.data.body[0].plan_id
+        console.log(data)
+        this.form.customer_id = data.data.body[0].customer_id
         this.form.name = data.data.body[0].name
-        this.form.megabytes = data.data.body[0].megabytes
-        this.form.basic_price = data.data.body[0].basic_price
-        this.form.install_price = data.data.body[0].install_price
-        this.form.location_type = data.data.body[0].location_type
-        this.form.service_type = data.data.body[0].service_type
-        this.form.token = localStorage.getItem('token')
-        console.log(this.form)
+        this.form.document_type = data.data.body[0].document_type
+        this.form.document = data.data.body[0].document
+        this.form.phone_number = data.data.body[0].phone_number
+        this.form.email = data.data.body[0].email
+        this.form.billing_email = data.data.body[0].billing_email
+        this.form.username = data.data.body[0].username
+        // this.form.token = localStorage.getItem('token')
       })
   }
 }

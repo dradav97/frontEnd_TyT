@@ -55,10 +55,10 @@ export default {
   },
   methods: {
     edit (id) {
-      // this.$router.push('/editPlanAdmin/' + id)
+      this.$router.push('/editCustomerAdmin/' + id)
     },
     newClient () {
-      // this.$router.push('/newPlanAdmin/')
+      this.$router.push('/newCustomerAdmin/')
     }
   },
   mounted: function () {

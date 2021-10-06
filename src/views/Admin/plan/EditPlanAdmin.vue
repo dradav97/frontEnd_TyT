@@ -67,8 +67,7 @@ export default {
         basic_price: '',
         install_price: '',
         location_type: '',
-        service_type: '',
-        token: ''
+        service_type: ''
       }
     }
   },
@@ -85,7 +84,7 @@ export default {
     },
     remove () {
       const send = {
-        Authorization: 'Bearer ' + this.form.token
+        Authorization: 'Bearer ' + localStorage.getItem('token')
       }
       axios.delete('http://localhost:3000/api/plan/' + this.form.plan_id, { headers: send })
         .then(() => {
@@ -104,8 +103,8 @@ export default {
         this.form.install_price = data.data.body[0].install_price
         this.form.location_type = data.data.body[0].location_type
         this.form.service_type = data.data.body[0].service_type
-        this.form.token = localStorage.getItem('token')
-        console.log(this.form)
+        // this.form.token = localStorage.getItem('token')
+        // console.log(this.form)
       })
   }
 }
