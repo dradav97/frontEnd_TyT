@@ -11,7 +11,7 @@
         <div class="btn-opt"><a href="#">Nosotros</a></div>
         <div class="btn-opt"><a href="#">Contacto</a></div>
         <div class="separator"></div>
-        <div class="btn-opt"><a href="#">Iniciar Sesión</a></div>
+        <div class="btn-opt"><router-link to="/login">Iniciar Sesión</router-link></div>
 
       </div>
     </div>
